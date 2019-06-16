@@ -11,8 +11,8 @@ package com.zk.WeChatRobot.Message.type;
 public enum EventType {
     SUBCRIBE("subscribe"),
     UNSUBCRIBE("unsubscribe"),
-    SCAN("scan"),
-    LOCATION("location"),
+    SCAN("SCAN"),
+    LOCATION("LOCATION"),
     CLICK("CLICK"),
     VIEW("VIEW");
     private String code;

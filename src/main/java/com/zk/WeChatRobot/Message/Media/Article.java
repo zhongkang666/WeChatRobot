@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Article {
+public class Article implements Media{
     private String title;
     private String description;
     private String picUrl;

@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Music {
+public class Music implements Media{
     private String title;
     private String description;
     private String hQMusicUrl;

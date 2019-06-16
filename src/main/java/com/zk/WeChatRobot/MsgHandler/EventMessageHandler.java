@@ -26,5 +26,13 @@ public interface EventMessageHandler extends MessageHandler{
      * @param:<br/>
      * @return:
      */
-    MessageBase locationEventHandle(Map<String, String> map);
+    String locationEventHandle(Map<String, String> map);
+
+    /**
+     * Description:对用户取消关注时进行处理，通常是设置用户的关注状态 <br/>
+     * @autor: zk<br />
+     * @param: Map<br/>
+     * @return:a
+     */
+    String unSubscribeEventHandle(Map<String,String> map);
 }

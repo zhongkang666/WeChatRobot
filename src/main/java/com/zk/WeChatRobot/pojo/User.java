@@ -1,18 +1,14 @@
 package com.zk.WeChatRobot.pojo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2019/06/13
+* Created by Mybatis Generator 2019/06/16
 */
 @Data
 public class User implements Serializable {
-    /* 用户ID*/
-    private String userId;
-
     /* */
     private String openId;
 
@@ -41,13 +37,18 @@ public class User implements Serializable {
     private Date subscribeTime;
 
     /* 用户所在地理位置的纬度*/
-    private BigDecimal latitude;
+    private Double latitude;
 
     /* 经度*/
-    private BigDecimal longitude;
+    private Double longitude;
 
     /* 地理位置精度*/
-    private BigDecimal precision;
+    private Double accuracy;
+
+    /* */
+    private Boolean isSubscribe;
+
+    private Double distance;
 
     private static final long serialVersionUID = 1L;
 }

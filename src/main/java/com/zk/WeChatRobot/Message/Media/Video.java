@@ -11,7 +11,7 @@ import lombok.Data;
  * @since JDK 1.8
  */
 @Data
-public class Video {
+public class Video implements Media{
     private String mediaId;
     private String title;
     private String description;

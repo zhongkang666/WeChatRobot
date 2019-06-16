@@ -22,13 +22,13 @@ public class WeChatRouter {
     @Autowired
     private EventMessageHandler eventMessageHandler;
 
-//    @Autowired
-//    private CommonMsgHandler commonMsgHandler;
+    @Autowired
+    private CommonMsgHandler commonMsgHandler;
 
     public MessageHandler route(Map<String,String> map){
         if(map.get("Event") != null){
             return eventMessageHandler;
         }
-        return null;
+        return commonMsgHandler;
     }
 }

@@ -1,6 +1,5 @@
 package com.zk.WeChatRobot.pojo;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -104,76 +103,6 @@ public class UserExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(String value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(String value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(String value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(String value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLike(String value) {
-            addCriterion("user_id like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("user_id not like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<String> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<String> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(String value1, String value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(String value1, String value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
         }
 
         public Criteria andOpenIdIsNull() {
@@ -796,52 +725,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeEqualTo(BigDecimal value) {
+        public Criteria andLatitudeEqualTo(Double value) {
             addCriterion("Latitude =", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeNotEqualTo(BigDecimal value) {
+        public Criteria andLatitudeNotEqualTo(Double value) {
             addCriterion("Latitude <>", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeGreaterThan(BigDecimal value) {
+        public Criteria andLatitudeGreaterThan(Double value) {
             addCriterion("Latitude >", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andLatitudeGreaterThanOrEqualTo(Double value) {
             addCriterion("Latitude >=", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeLessThan(BigDecimal value) {
+        public Criteria andLatitudeLessThan(Double value) {
             addCriterion("Latitude <", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andLatitudeLessThanOrEqualTo(Double value) {
             addCriterion("Latitude <=", value, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeIn(List<BigDecimal> values) {
+        public Criteria andLatitudeIn(List<Double> values) {
             addCriterion("Latitude in", values, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeNotIn(List<BigDecimal> values) {
+        public Criteria andLatitudeNotIn(List<Double> values) {
             addCriterion("Latitude not in", values, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLatitudeBetween(Double value1, Double value2) {
             addCriterion("Latitude between", value1, value2, "latitude");
             return (Criteria) this;
         }
 
-        public Criteria andLatitudeNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLatitudeNotBetween(Double value1, Double value2) {
             addCriterion("Latitude not between", value1, value2, "latitude");
             return (Criteria) this;
         }
@@ -856,113 +785,173 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeEqualTo(BigDecimal value) {
+        public Criteria andLongitudeEqualTo(Double value) {
             addCriterion("Longitude =", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeNotEqualTo(BigDecimal value) {
+        public Criteria andLongitudeNotEqualTo(Double value) {
             addCriterion("Longitude <>", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeGreaterThan(BigDecimal value) {
+        public Criteria andLongitudeGreaterThan(Double value) {
             addCriterion("Longitude >", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andLongitudeGreaterThanOrEqualTo(Double value) {
             addCriterion("Longitude >=", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeLessThan(BigDecimal value) {
+        public Criteria andLongitudeLessThan(Double value) {
             addCriterion("Longitude <", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andLongitudeLessThanOrEqualTo(Double value) {
             addCriterion("Longitude <=", value, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeIn(List<BigDecimal> values) {
+        public Criteria andLongitudeIn(List<Double> values) {
             addCriterion("Longitude in", values, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeNotIn(List<BigDecimal> values) {
+        public Criteria andLongitudeNotIn(List<Double> values) {
             addCriterion("Longitude not in", values, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLongitudeBetween(Double value1, Double value2) {
             addCriterion("Longitude between", value1, value2, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andLongitudeNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLongitudeNotBetween(Double value1, Double value2) {
             addCriterion("Longitude not between", value1, value2, "longitude");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionIsNull() {
-            addCriterion("Precision is null");
+        public Criteria andAccuracyIsNull() {
+            addCriterion("accuracy is null");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionIsNotNull() {
-            addCriterion("Precision is not null");
+        public Criteria andAccuracyIsNotNull() {
+            addCriterion("accuracy is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionEqualTo(BigDecimal value) {
-            addCriterion("Precision =", value, "precision");
+        public Criteria andAccuracyEqualTo(Double value) {
+            addCriterion("accuracy =", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionNotEqualTo(BigDecimal value) {
-            addCriterion("Precision <>", value, "precision");
+        public Criteria andAccuracyNotEqualTo(Double value) {
+            addCriterion("accuracy <>", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionGreaterThan(BigDecimal value) {
-            addCriterion("Precision >", value, "precision");
+        public Criteria andAccuracyGreaterThan(Double value) {
+            addCriterion("accuracy >", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("Precision >=", value, "precision");
+        public Criteria andAccuracyGreaterThanOrEqualTo(Double value) {
+            addCriterion("accuracy >=", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionLessThan(BigDecimal value) {
-            addCriterion("Precision <", value, "precision");
+        public Criteria andAccuracyLessThan(Double value) {
+            addCriterion("accuracy <", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("Precision <=", value, "precision");
+        public Criteria andAccuracyLessThanOrEqualTo(Double value) {
+            addCriterion("accuracy <=", value, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionIn(List<BigDecimal> values) {
-            addCriterion("Precision in", values, "precision");
+        public Criteria andAccuracyIn(List<Double> values) {
+            addCriterion("accuracy in", values, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionNotIn(List<BigDecimal> values) {
-            addCriterion("Precision not in", values, "precision");
+        public Criteria andAccuracyNotIn(List<Double> values) {
+            addCriterion("accuracy not in", values, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Precision between", value1, value2, "precision");
+        public Criteria andAccuracyBetween(Double value1, Double value2) {
+            addCriterion("accuracy between", value1, value2, "accuracy");
             return (Criteria) this;
         }
 
-        public Criteria andPrecisionNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("Precision not between", value1, value2, "precision");
+        public Criteria andAccuracyNotBetween(Double value1, Double value2) {
+            addCriterion("accuracy not between", value1, value2, "accuracy");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeIsNull() {
+            addCriterion("is_subscribe is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeIsNotNull() {
+            addCriterion("is_subscribe is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeEqualTo(Boolean value) {
+            addCriterion("is_subscribe =", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeNotEqualTo(Boolean value) {
+            addCriterion("is_subscribe <>", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeGreaterThan(Boolean value) {
+            addCriterion("is_subscribe >", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_subscribe >=", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeLessThan(Boolean value) {
+            addCriterion("is_subscribe <", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_subscribe <=", value, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeIn(List<Boolean> values) {
+            addCriterion("is_subscribe in", values, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeNotIn(List<Boolean> values) {
+            addCriterion("is_subscribe not in", values, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_subscribe between", value1, value2, "isSubscribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSubscribeNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_subscribe not between", value1, value2, "isSubscribe");
             return (Criteria) this;
         }
     }
