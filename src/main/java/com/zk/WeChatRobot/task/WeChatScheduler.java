@@ -3,9 +3,8 @@ package com.zk.WeChatRobot.task;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zk.WeChatRobot.utils.HttpClientUtils;
-import com.zk.WeChatRobot.utils.WeChatUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
@@ -33,12 +32,12 @@ public class WeChatScheduler {
     }
 
     @Scheduled(fixedDelay = 7100000)
-    protected void refreshAccessToken(){
+    @CachePut(value = "SystemCache",key = "'access_token'")
+    public String refreshAccessToken(){
         //访问微信的接口获取access_token
         String url = String.format(accessTokenApi, appID, appsecret);
         String response = HttpClientUtils.sendGetRequest(url);
         JSONObject jsonObject = JSON.parseObject(response);
-        String access_token = jsonObject.getString("access_token");
-        WeChatUtils.access_token = access_token;
+        return jsonObject.getString("access_token");
     }
 }

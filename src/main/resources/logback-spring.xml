@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration  scan="true" scanPeriod="10 seconds">
     <contextName>logback</contextName>
-    <property name="log.path" value="E:/Develop/logs" />
+    <property name="log.path" value="D:/Develop/logs" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -132,14 +132,14 @@
     </appender>
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.nmys.view" level="debug"/>
+        <logger name="com.zk.WeChatRobot" level="debug"/>
     </springProfile>
 
-    <!--<root level="info">
+    <root level="info">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE" />
         <appender-ref ref="INFO_FILE" />
         <appender-ref ref="WARN_FILE" />
         <appender-ref ref="ERROR_FILE" />
-    </root>-->
+    </root>
 </configuration>

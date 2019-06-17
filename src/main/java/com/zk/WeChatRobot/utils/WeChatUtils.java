@@ -2,9 +2,10 @@ package com.zk.WeChatRobot.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.zk.WeChatRobot.pojo.User;
+import org.springframework.cache.Cache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 
 import java.util.Date;
-
 
 public class WeChatUtils {
 
@@ -30,9 +31,14 @@ public class WeChatUtils {
     }
 
     public static User getUserInfo(String openId){
-        String userInfo = HttpClientUtils.sendGetRequest(String.format(userInfoApi, WeChatUtils.access_token, openId));
+        String userInfo = HttpClientUtils.sendGetRequest(String.format(userInfoApi,getAccessToken(), openId));
         User user = JSON.parseObject(userInfo, User.class);
         user.setSubscribeTime(new Date());
         return user;
+    }
+
+    public static String getAccessToken(){
+        String access_token = CacheUtils.getCacheFromAssignCache("SystemCache","access_token",String.class);
+        return access_token;
     }
 }

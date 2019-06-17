@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -62,7 +63,7 @@ public class WeChatController {
     public String uploadTempMaterial(MultipartFile file){
         //首先获取文件的文件类型
         String mimeType = file.getContentType();
-        String url = String.format(uploadUrl, WeChatUtils.access_token, mimeType);
+        String url = String.format(uploadUrl, WeChatUtils.getAccessToken(), mimeType);
         CommonsMultipartFile cf= (CommonsMultipartFile)file;
         DiskFileItem fi = (DiskFileItem)cf.getFileItem();
         File f = fi.getStoreLocation();
@@ -70,5 +71,13 @@ public class WeChatController {
         TempMaterial tempMaterial = JSON.parseObject(result, TempMaterial.class);
         mapper.insert(tempMaterial);
         return "success";
+    }
+
+    @GetMapping("test")
+    @ResponseBody
+    public String test(){
+        String accessToken = WeChatUtils.getAccessToken();
+        System.out.println(accessToken);
+        return accessToken;
     }
 }
