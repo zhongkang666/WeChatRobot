@@ -19,6 +19,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 @Slf4j
 public class HttpClientUtils {
@@ -45,11 +46,12 @@ public class HttpClientUtils {
         return null;
     }
 
-    public static String sendPostRequest(String url, StringEntity entity){
+    public static String sendPostRequest(String url, String entity){
+        StringEntity stringEntity = new StringEntity(entity, Charset.forName("UTF-8"));
         CloseableHttpClient build = HttpClientBuilder.create().build();
         HttpPost httpPost = new HttpPost(url);
         setRequestConfig(httpPost);
-        httpPost.setEntity(entity);
+        httpPost.setEntity(stringEntity);
         String result = null;
         try {
             HttpResponse response = build.execute(httpPost);

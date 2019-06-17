@@ -2,6 +2,9 @@ package com.zk.WeChatRobot.template;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created by LDY on 2017/8/1.
@@ -9,7 +12,11 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class ColorModel {
+@NoArgsConstructor
+public class WxMpTemplateData {
+    @NotBlank
+    private String name;
+    @NotBlank
     private String value;   //内容
     private String color;   //字体颜色
 }
