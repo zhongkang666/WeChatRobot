@@ -1,8 +1,13 @@
 package com.zk.WeChatRobot.Message;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.zk.WeChatRobot.Message.Media.Music;
+import com.zk.WeChatRobot.Message.xml.XStreamMediaIdConverter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * ClassName: MusicMessage <br/>
@@ -14,6 +19,11 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@XStreamAlias("xml")
 public class MusicMessage extends MessageBase {
+
+    @XStreamAlias("Music")
     private Music music;
 }

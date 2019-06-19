@@ -1,6 +1,14 @@
 package com.zk.testRobot;
 
 import com.alibaba.fastjson.JSONObject;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.zk.WeChatRobot.Message.ArticleMessage;
+import com.zk.WeChatRobot.Message.Media.Article;
+import com.zk.WeChatRobot.Message.MessageBase;
+import com.zk.WeChatRobot.Message.TextMessage;
+import com.zk.WeChatRobot.Message.type.MessageType;
+import com.zk.WeChatRobot.Message.xml.XStreamTransformer;
 import com.zk.WeChatRobot.template.WxMpTemplateData;
 import com.zk.WeChatRobot.template.WxTemplateMessage;
 import com.zk.WeChatRobot.utils.HttpClientUtils;
@@ -20,24 +28,45 @@ public class TestRobot {
 
     private String sendTemplate = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s";
 
-    private String access_token = "22_7-kGsVK03iaVzSssdoHUktHlINVde-7_Pd1EFl3HephcmEUYEHAQRyb0itlXGTj0ME_vhznnjaKnIJZut0UYvlyUkDcMSMMiKEQbgaG9lPxrIL8s-bEb1_FEjE_22RpUeeU_CEOAL4SHQdmPBNDjAFATFV";
+    private String access_token = "22_WCdMlgDXl1JCzr3yviIM9dO1zkpTnZoOPbFDK6G9jA35nl0-mlkmsvLwOsnPV9kLImiKYwSPwHXGQ89TKLqJfddB8PyEvRsczpBCItsL9q035GK2l_8S6lX6RtcIFVjAIAVSI";
     @Test
     public void test() throws IOException {
-        JSONObject params = new JSONObject();
-        JSONObject image = new JSONObject();
-        JSONObject filter = new JSONObject();
-        filter.put("is_to_all",true);
-        image.put("media_id","9kY5LWUxsx7PEpBt7ANhqFCYDy4f_T9ef5GQVXm5R_2l9VmwHJlB9zjjtami18wr");
-        params.put("filter",filter);
-        params.put("image",image);
-        params.put("msgtype","image");
-        String s = HttpClientUtils.sendPostRequest(String.format(url,access_token), params.toString());
-        System.out.println(s);
+
     }
 
     @Test
     public void testSendMessageTemplate(){
-        sendWxText("owGjY1B4IObud8kCac7m_l4D6JNw", "4W_YmgByCgyPizo2raCT0e3gTwGAVKQ_i38HdLJFR1Q");
+//        ArticleMessage textMessage = new ArticleMessage();
+//        textMessage.setFromUserName("test");
+//        textMessage.setToUserName("touser");
+//        textMessage.setMsgType(MessageType.TEXT);
+//        textMessage.setCreateTime(1000L);
+//        textMessage.setArticleCount(1);
+//        ArrayList<Article> articles = new ArrayList<>();
+//        Article article = new Article();
+//        article.setTitle("testTitle");
+//        article.setDescription("are you ok?");
+//        article.setUrl("localhost");
+//        article.setPicUrl("haha");
+//        articles.add(article);
+//        textMessage.setArticles(articles);
+//        System.out.println(textMessage.toXML());
+        ArticleMessage textMessage = XStreamTransformer.fromXML(ArticleMessage.class, "<xml>\n" +
+                "  <ToUserName>&lt;![CDATA[touser]]&gt;</ToUserName>\n" +
+                "  <FromUserName>&lt;![CDATA[test]]&gt;</FromUserName>\n" +
+                "  <CreateTime>1000</CreateTime>\n" +
+                "  <MsgType>&lt;![CDATA[text]]&gt;</MsgType>\n" +
+                "  <ArticleCount>1</ArticleCount>\n" +
+                "  <Articles>\n" +
+                "    <item>\n" +
+                "      <Title>testTitle</Title>\n" +
+                "      <Description>are you ok?</Description>\n" +
+                "      <PicUrl>haha</PicUrl>\n" +
+                "      <Url>localhost</Url>\n" +
+                "    </item>\n" +
+                "  </Articles>\n" +
+                "</xml>\n" );
+        System.out.println(textMessage);
     }
 
     public void sendWxText(String openId,String template_id) {

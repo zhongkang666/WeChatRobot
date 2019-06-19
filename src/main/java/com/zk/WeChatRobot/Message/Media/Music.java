@@ -1,7 +1,12 @@
 package com.zk.WeChatRobot.Message.Media;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.zk.WeChatRobot.Message.xml.XStreamCDataConverter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * ClassName: Music <br/>
@@ -13,9 +18,23 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@XStreamAlias("xml")
 public class Music implements Media{
+    @XStreamAlias("Title")
+    @XStreamConverter(value = XStreamCDataConverter.class)
     private String title;
+
+    @XStreamAlias("Description")
+    @XStreamConverter(value = XStreamCDataConverter.class)
     private String description;
+
+    @XStreamAlias("HQMusicUrl")
+    @XStreamConverter(value = XStreamCDataConverter.class)
     private String hQMusicUrl;
+
+    @XStreamAlias("ThumbMediaId")
+    @XStreamConverter(value = XStreamCDataConverter.class)
     private String thumbMediaId;
 }

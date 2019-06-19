@@ -1,8 +1,11 @@
 package com.zk.WeChatRobot.Message;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.zk.WeChatRobot.Message.Media.Video;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * ClassName: VideoMessage <br/>
@@ -14,6 +17,11 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@XStreamAlias("xml")
 public class VideoMessage {
+
+    @XStreamAlias("Video")
     private Video video;
 }

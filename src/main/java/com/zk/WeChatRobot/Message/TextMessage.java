@@ -1,10 +1,11 @@
 package com.zk.WeChatRobot.Message;
 
-import lombok.Builder;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.zk.WeChatRobot.Message.xml.XStreamCDataConverter;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 /**
  * ClassName: TextMessage <br/>
@@ -16,19 +17,10 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class TextMessage extends MessageBase {
+@AllArgsConstructor
+@XStreamAlias("xml")
+public class TextMessage extends MessageBase{
+    @XStreamAlias("Content")
+    @XStreamConverter(value = XStreamCDataConverter.class)
     private String content;
-
-    @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("<xml>");
-        sb.append("<ToUserName><![CDATA[" + this.toUserName + "]]></ToUserName>");
-        sb.append("<FromUserName><![CDATA[" + this.fromUserName  + "]]></FromUserName>");
-        sb.append("<CreateTime>" +this.createTime + "</CreateTime>");
-        sb.append("<MsgType><![CDATA[" +this.msgType.toString()+ "]]></MsgType>");
-        sb.append("<Content>" +this.content+ "</Content>");
-        sb.append("</xml>");
-        return sb.toString();
-    }
 }

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Map;
 
@@ -39,12 +40,16 @@ public class WeChatController {
     @Autowired
     private TempMaterialMapper mapper;
 
-    @PostMapping(value = "/robotAnswer")
+    @PostMapping(value = "/robotAnswer",produces = "application/xml; charset=UTF-8")
     public String getAnswer(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        //log.info(session.getAttribute("username").toString());
         log.info("进入post接口");
         Map<String, String> requestMap = TuLingUtils.getRequestMap(request);
+        session.setAttribute("username",requestMap.get("FromUserName"));
         MessageHandler route = router.route(requestMap);
         String message = route.handleMessage(requestMap);
+        log.info(message);
         return message;
     }
 

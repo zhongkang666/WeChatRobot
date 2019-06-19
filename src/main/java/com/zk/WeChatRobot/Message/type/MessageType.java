@@ -1,5 +1,8 @@
 package com.zk.WeChatRobot.Message.type;
 
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.zk.WeChatRobot.Message.xml.XStreamMsgTypeConverter;
+
 /**
  * ClassName: MessageType <br/>
  * Description: <br/>
@@ -8,6 +11,7 @@ package com.zk.WeChatRobot.Message.type;
  * @author zk<br />
  * @since JDK 1.8
  */
+@XStreamConverter(value = XStreamMsgTypeConverter.class)
 public enum MessageType {
     TEXT("text"),
     IMAGE("image"),

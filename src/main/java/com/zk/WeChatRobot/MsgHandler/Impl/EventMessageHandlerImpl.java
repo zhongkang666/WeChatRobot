@@ -38,7 +38,7 @@ public class EventMessageHandlerImpl implements EventMessageHandler {
         }else if(EventType.UNSUBCRIBE.isEquals(event)){
             unSubscribeEventHandle(map);
         }
-        return messageBase.toString();
+        return messageBase.toXML();
     }
 
     @Override

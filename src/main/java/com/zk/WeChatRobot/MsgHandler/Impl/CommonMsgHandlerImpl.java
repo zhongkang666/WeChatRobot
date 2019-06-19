@@ -51,7 +51,7 @@ public class CommonMsgHandlerImpl implements CommonMsgHandler {
             map.put("content",answer);
         }
         MessageBase message = MessageFactory.createMessage(MessageType.TEXT, map, null);
-        return message.toString();
+        return message.toXML();
     }
 
     public List<User> findNearbyPeople(Map<String,String> map){
