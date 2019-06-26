@@ -9,17 +9,28 @@ import com.zk.WeChatRobot.Message.MessageBase;
 import com.zk.WeChatRobot.Message.TextMessage;
 import com.zk.WeChatRobot.Message.type.MessageType;
 import com.zk.WeChatRobot.Message.xml.XStreamTransformer;
+import com.zk.WeChatRobot.mapper.UserMapper;
+import com.zk.WeChatRobot.pojo.User;
 import com.zk.WeChatRobot.template.WxMpTemplateData;
 import com.zk.WeChatRobot.template.WxTemplateMessage;
 import com.zk.WeChatRobot.utils.HttpClientUtils;
+import com.zk.WeChatRobot.utils.WeChatUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.awt.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = Robot.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestRobot {
 
     private String url = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=%s";
@@ -29,9 +40,15 @@ public class TestRobot {
     private String sendTemplate = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s";
 
     private String access_token = "22_WCdMlgDXl1JCzr3yviIM9dO1zkpTnZoOPbFDK6G9jA35nl0-mlkmsvLwOsnPV9kLImiKYwSPwHXGQ89TKLqJfddB8PyEvRsczpBCItsL9q035GK2l_8S6lX6RtcIFVjAIAVSI";
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
     public void test() throws IOException {
-
+        User user = userMapper.selectByPrimaryKey("owGjY1L5H0I9JeHldR6lfLFQGUj8");
+        double distance = WeChatUtils.getDistance(22.535942, 113.932701, user.getLatitude(), user.getLongitude());
+        System.out.println(distance);
     }
 
     @Test

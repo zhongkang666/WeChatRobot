@@ -1,8 +1,5 @@
 package com.zk.WeChatRobot.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,11 +17,13 @@ import org.apache.http.util.EntityUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Objects;
 
 @Slf4j
 public class HttpClientUtils {
 
     public static String sendGetRequest(String url){
+        Objects.requireNonNull(url,"url不能为空");
         CloseableHttpClient build = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);
         setRequestConfig(httpGet);
@@ -47,6 +46,7 @@ public class HttpClientUtils {
     }
 
     public static String sendPostRequest(String url, String entity){
+        Objects.requireNonNull(url,"url不能为空");
         StringEntity stringEntity = new StringEntity(entity, Charset.forName("UTF-8"));
         CloseableHttpClient build = HttpClientBuilder.create().build();
         HttpPost httpPost = new HttpPost(url);
@@ -71,6 +71,7 @@ public class HttpClientUtils {
 
     //上传文件方法
     public static String uploadFile(String url, File file){
+        Objects.requireNonNull(url,"url不能为空");
         CloseableHttpClient build = HttpClientBuilder.create().build();
         HttpPost post = new HttpPost(url);
         setRequestConfig(post);

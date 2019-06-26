@@ -36,7 +36,7 @@ public class EventMessageHandlerImpl implements EventMessageHandler {
         }else if(EventType.LOCATION.isEquals(event)){
             return locationEventHandle(map);
         }else if(EventType.UNSUBCRIBE.isEquals(event)){
-            unSubscribeEventHandle(map);
+            return unSubscribeEventHandle(map);
         }
         return messageBase.toXML();
     }
@@ -48,7 +48,13 @@ public class EventMessageHandlerImpl implements EventMessageHandler {
         userExample.createCriteria().andOpenIdEqualTo(map.get("FromUserName"));
         if(userMapper.countByExample(userExample) < 1){
             User user = WeChatUtils.getUserInfo(map.get("FromUserName"));
+            user.setIsSubscribe(true);
             userMapper.insert(user);
+        }else{
+            User user = new User();
+            user.setIsSubscribe(true);
+            user.setOpenId(map.get("FromUserName"));
+            userMapper.updateByPrimaryKeySelective(user);
         }
         map.put("content","欢迎关注");
         MessageBase message = MessageFactory.createMessage(MessageType.TEXT, map, null);

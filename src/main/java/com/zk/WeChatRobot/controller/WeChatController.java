@@ -2,6 +2,7 @@ package com.zk.WeChatRobot.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zk.WeChatRobot.MsgHandler.MessageHandler;
+import com.zk.WeChatRobot.config.WxMpProperties;
 import com.zk.WeChatRobot.mapper.TempMaterialMapper;
 import com.zk.WeChatRobot.pojo.TempMaterial;
 import com.zk.WeChatRobot.router.WeChatRouter;
@@ -11,7 +12,7 @@ import com.zk.WeChatRobot.utils.WeChatUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,15 +25,12 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Map;
 
-@RestController
 @Slf4j
+@RestController
 public class WeChatController {
 
-    @Value("${token}")
-    private String token;
-
-    @Value("${wechat.uploaApi}")
-    private String uploadUrl;
+    @Autowired
+    private WxMpProperties properties;
 
     @Autowired
     private WeChatRouter router;
@@ -56,7 +54,7 @@ public class WeChatController {
     @GetMapping(value = "/robotAnswer",produces = "text/plain;charset=utf-8")
     public String check(String timestamp, String nonce, String echostr, String signature){
         log.info("进入微信验证接口,%s,%s,%s,%s",timestamp,nonce,echostr,signature);
-        if(TuLingUtils.sha1Result(timestamp,nonce,token,signature)){
+        if(TuLingUtils.sha1Result(timestamp,nonce,properties.getToken(),signature)){
            return echostr;
         }else{
             return "未知请求";
@@ -67,7 +65,7 @@ public class WeChatController {
     public String uploadTempMaterial(MultipartFile file){
         //首先获取文件的文件类型
         String mimeType = file.getContentType();
-        String url = String.format(uploadUrl, WeChatUtils.getAccessToken(), mimeType);
+        String url = String.format(properties.getUploadApi(), WeChatUtils.getAccessToken(), mimeType);
         CommonsMultipartFile cf= (CommonsMultipartFile)file;
         DiskFileItem fi = (DiskFileItem)cf.getFileItem();
         File f = fi.getStoreLocation();
