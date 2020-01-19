@@ -2,10 +2,7 @@ package com.zk.WeChatRobot.Message.xml;
 
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.zk.WeChatRobot.Message.ArticleMessage;
-import com.zk.WeChatRobot.Message.MessageBase;
 import com.zk.WeChatRobot.Message.TextMessage;
 
 import java.io.InputStream;

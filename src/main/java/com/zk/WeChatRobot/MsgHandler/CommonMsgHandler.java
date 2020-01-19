@@ -8,5 +8,5 @@ package com.zk.WeChatRobot.MsgHandler;
  * @author zk<br />
  * @since JDK 1.8
  */
-public interface CommonMsgHandler extends MessageHandler {
+public interface CommonMsgHandler extends MessageHandlerFactory {
 }

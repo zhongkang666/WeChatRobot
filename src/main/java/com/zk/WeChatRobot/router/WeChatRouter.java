@@ -2,7 +2,8 @@ package com.zk.WeChatRobot.router;
 
 import com.zk.WeChatRobot.MsgHandler.CommonMsgHandler;
 import com.zk.WeChatRobot.MsgHandler.EventMessageHandler;
-import com.zk.WeChatRobot.MsgHandler.MessageHandler;
+import com.zk.WeChatRobot.MsgHandler.Impl.EventMessageHandlerFactoryImpl;
+import com.zk.WeChatRobot.MsgHandler.MessageHandlerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,12 +21,12 @@ import java.util.Map;
 public class WeChatRouter {
 
     @Autowired
-    private EventMessageHandler eventMessageHandler;
+    private EventMessageHandlerFactoryImpl eventMessageHandler;
 
     @Autowired
     private CommonMsgHandler commonMsgHandler;
 
-    public MessageHandler route(Map<String,String> map){
+    public MessageHandlerFactory route(Map<String,String> map){
         if(map.get("Event") != null){
             return eventMessageHandler;
         }

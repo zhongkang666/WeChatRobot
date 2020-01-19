@@ -1,7 +1,7 @@
 package com.zk.WeChatRobot.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.zk.WeChatRobot.MsgHandler.MessageHandler;
+import com.zk.WeChatRobot.MsgHandler.MessageHandlerFactory;
 import com.zk.WeChatRobot.config.WxMpProperties;
 import com.zk.WeChatRobot.mapper.TempMaterialMapper;
 import com.zk.WeChatRobot.pojo.TempMaterial;
@@ -12,7 +12,6 @@ import com.zk.WeChatRobot.utils.WeChatUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,7 +44,7 @@ public class WeChatController {
         log.info("进入post接口");
         Map<String, String> requestMap = TuLingUtils.getRequestMap(request);
         session.setAttribute("username",requestMap.get("FromUserName"));
-        MessageHandler route = router.route(requestMap);
+        MessageHandlerFactory route = router.route(requestMap);
         String message = route.handleMessage(requestMap);
         log.info(message);
         return message;

@@ -12,7 +12,7 @@ import java.util.Map;
  * @author zk<br />
  * @since JDK 1.8
  */
-public interface MessageHandler {
+public interface MessageHandlerFactory {
 
     String handleMessage(Map<String,String> map);
 }
