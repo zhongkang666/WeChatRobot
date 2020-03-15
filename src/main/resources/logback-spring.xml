@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration  scan="true" scanPeriod="10 seconds">
     <contextName>logback</contextName>
-    <property name="log.path" value="D:/Develop/logs" />
+    <property name="log.path" value="E:/Develop/logs" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -130,16 +130,39 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-    <!--开发环境:打印控制台-->
+    <!--开发环境:打印控制台
     <springProfile name="dev">
         <logger name="com.zk.WeChatRobot" level="debug"/>
     </springProfile>
+    -->
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <topic>wechatrobot</topic>
+        <!-- we don't care how the log messages will be partitioned  -->
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
 
+        <!-- use async delivery. the application threads are not blocked by logging -->
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+
+        <producerConfig>bootstrap.servers=192.168.25.128:9092</producerConfig>
+        <!-- don't wait for a broker to ack the reception of a batch.  -->
+        <producerConfig>acks=0</producerConfig>
+        <!-- wait up to 1000ms and collect log messages before sending them as a batch -->
+        <producerConfig>linger.ms=1000</producerConfig>
+        <!-- even if the producer buffer runs full, do not block the application but start to drop messages -->
+        <producerConfig>max.block.ms=0</producerConfig>
+        <!-- define a client-id that you use to identify yourself against the kafka broker -->
+        <producerConfig>client.id=${HOSTNAME}-${CONTEXT_NAME}-logback-relaxed</producerConfig>
+
+    </appender>
+
+    <logger name="Application_ERROR">
+        <appender-ref ref="kafkaAppender"/>
+    </logger>
     <root level="info">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="DEBUG_FILE" />
-        <appender-ref ref="INFO_FILE" />
-        <appender-ref ref="WARN_FILE" />
-        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="kafkaAppender" />
     </root>
 </configuration>
